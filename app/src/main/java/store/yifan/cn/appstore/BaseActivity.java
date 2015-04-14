@@ -11,6 +11,10 @@ import android.support.v7.app.ActionBarActivity;
  * Revise:<br\>
  */
 public abstract class BaseActivity extends ActionBarActivity {
+    //获取到前台的Activity
+    public static BaseActivity getForegroundActivity = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,9 +23,13 @@ public abstract class BaseActivity extends ActionBarActivity {
         initActionbar();
     }
 
-    public abstract void initActionbar() ;
+    public static BaseActivity getForegroundActivity() {
+        return getForegroundActivity;
+    }
 
-    public abstract void initData() ;
+    public abstract void initActionbar();
 
-    public abstract void init() ;
+    public abstract void initData();
+
+    public abstract void init();
 }

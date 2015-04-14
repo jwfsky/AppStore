@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.BaseActivity;
-import com.example.application.BaseApplication;
+import store.yifan.cn.appstore.BaseActivity;
+import store.yifan.cn.appstore.application.BaseApplication;
 
 public class UIUtils {
 
