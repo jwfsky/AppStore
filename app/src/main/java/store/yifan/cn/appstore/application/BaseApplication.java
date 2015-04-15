@@ -14,7 +14,7 @@ import android.os.Looper;
 public class BaseApplication extends Application {
 
     //获取全局的上下文
-    private static Application mContext;
+    private static Application mContext=null;
     //获取主线程handler
     private static Handler mMainThreadHandler;
     //获取主线程Looper
@@ -26,7 +26,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        this.mContext=this;
+        this.mContext=BaseApplication.this;
         this.mMainThread=Thread.currentThread();
         this.mMainThreadHandler=new Handler();
         this.mMainThreadId=android.os.Process.myTid();
@@ -34,6 +34,7 @@ public class BaseApplication extends Application {
     }
 
     public static  Application getApplication() {
+        System.out.println(mContext);
         return mContext;
     }
 

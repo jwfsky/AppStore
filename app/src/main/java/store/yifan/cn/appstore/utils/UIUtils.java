@@ -30,6 +30,7 @@ public class UIUtils {
 
 	/** dip转换px */
 	public static int dip2px(int dip) {
+        Context context=getContext();
 		final float scale = getContext().getResources().getDisplayMetrics().density;
 		return (int) (dip * scale + 0.5f);
 	}
