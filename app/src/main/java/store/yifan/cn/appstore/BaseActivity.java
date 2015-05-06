@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBarActivity;
  * Author: Jwf(feijia101@gmail.com) <br\>
  * Date: 2015-04-14 14:38<br\>
  * Version: 1.0<br\>
- * Desc:<br\>
+ * Desc:activity的基础类<br\>
  * Revise:<br\>
  */
 public abstract class BaseActivity extends ActionBarActivity {

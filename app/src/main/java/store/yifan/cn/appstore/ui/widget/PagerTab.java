@@ -1,4 +1,4 @@
-package mwqi.ui.widget;
+package store.yifan.cn.appstore.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

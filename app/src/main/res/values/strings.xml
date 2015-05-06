@@ -41,7 +41,6 @@
         <item>推荐</item>
         <item>分类</item>
         <item>排行</item>
-        
     </string-array>
     <string-array name="detail_tab_names">
         <item>详情</item>
@@ -80,6 +79,5 @@
         <item>影音</item>
         <item>安全</item>
     </string-array>
-    <string name="action_settings">设置测试</string>
 
 </resources>
