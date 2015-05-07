@@ -23,6 +23,18 @@ public abstract class BaseActivity extends ActionBarActivity {
         initActionbar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getForegroundActivity=this;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getForegroundActivity=null;
+    }
+
     public static BaseActivity getForegroundActivity() {
         return getForegroundActivity;
     }

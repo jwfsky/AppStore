@@ -8,9 +8,8 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-        <com.mwqi.ui.widget.PagerTab
-                android:id="@+id/tabs"
+        <store.yifan.cn.appstore.ui.widget.PagerTab
+            android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="42dip"
                 android:background="@drawable/bg_tab"/>
@@ -28,5 +27,5 @@
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@drawable/bg_tab"></FrameLayout>
+            android:background="@drawable/bg_tab"/>
 </android.support.v4.widget.DrawerLayout>
