@@ -928,6 +928,8 @@ containing a value of this type.
         public static int TextAppearance_AppCompat_Base_Widget_PopupMenu_Small=0x7f0b0005;
         public static int TextAppearance_AppCompat_Light_Base_SearchResult=0x7f0b0006;
         public static int TextAppearance_AppCompat_Light_Base_SearchResult_Subtitle=0x7f0b0007;
+        /** parent="@android:TextAppearance.Holo.SearchResult.Title">
+         */
         public static int TextAppearance_AppCompat_Light_Base_SearchResult_Title=0x7f0b0008;
         public static int TextAppearance_AppCompat_Light_Base_Widget_PopupMenu_Large=0x7f0b0009;
         public static int TextAppearance_AppCompat_Light_Base_Widget_PopupMenu_Small=0x7f0b000a;

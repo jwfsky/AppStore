@@ -3,20 +3,39 @@ package store.yifan.cn.appstore;
 
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 
 
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
+import store.yifan.cn.appstore.fragment.BaseFragment;
+import store.yifan.cn.appstore.fragment.FragmentFactory;
+import store.yifan.cn.appstore.ui.widget.PagerTab;
 import store.yifan.cn.appstore.utils.UIUtils;
 
 
 public class MainActivity extends BaseActivity {
 
+
+    @ViewInject(R.id.drawer_layout)
+    private DrawerLayout drawer_layout;
+    @ViewInject(R.id.tabs)
+    private PagerTab mTabs;
+    @ViewInject(R.id.pager)
+    private ViewPager mPager;
+    private MainPageAdapter mainPageAdapter;
+
     private ActionBar mActionBar;
     private ActionBarDrawerToggle toggle;
-    private DrawerLayout drawer_layout;
 
     @Override
     public void initActionbar() {
@@ -52,27 +71,40 @@ public class MainActivity extends BaseActivity {
     @Override
     public void init() {
         setContentView(R.layout.activity_main);
-        drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer_layout= (DrawerLayout) findViewById(R.id.drawer_layout);
+        mPager= (ViewPager) findViewById(R.id.pager);
+        mTabs= (PagerTab) findViewById(R.id.tabs);
+
         drawer_layout.setDrawerListener(new DemoDrawerListener());
+        drawer_layout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
+
+        mainPageAdapter=new MainPageAdapter(getSupportFragmentManager());
+        mPager.setAdapter(mainPageAdapter);
+
+        mTabs.setViewPager(mPager);
+        mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
+
     }
 
-    /** drawer的监听 */
+    /**
+     * drawer的监听
+     */
     private class DemoDrawerListener implements DrawerLayout.DrawerListener {
         @Override
         public void onDrawerOpened(View drawerView) {// 打开drawer
             toggle.onDrawerOpened(drawerView);//需要把开关也变为打开
 
-            UIUtils.showToastSafe("我测试一下,打开了");
+            /*UIUtils.showToastSafe("我测试一下,打开了");
             mActionBar.setTitle("打开了");
-            invalidateOptionsMenu();
+            invalidateOptionsMenu();*/
         }
 
         @Override
         public void onDrawerClosed(View drawerView) {// 关闭drawer
             toggle.onDrawerClosed(drawerView);//需要把开关也变为关闭
-            UIUtils.showToastSafe("我测试一下,关闭了");
+            /*UIUtils.showToastSafe("我测试一下,关闭了");
             mActionBar.setTitle("关闭了");
-            invalidateOptionsMenu();
+            invalidateOptionsMenu();*/
         }
 
         @Override
@@ -86,4 +118,41 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    class MainPageAdapter extends FragmentPagerAdapter{
+
+        private String[] mTabTitle;
+        public MainPageAdapter(FragmentManager fm) {
+            super(fm);
+            mTabTitle=UIUtils.getStringArray(R.array.detail_tab_names);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            return FragmentFactory.createFragment(i);
+        }
+
+        @Override
+        public int getCount() {
+            return mTabTitle.length;
+        }
+    }
+    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int i, float v, int i2) {
+
+        }
+
+        @Override
+        public void onPageSelected(int i) {
+            BaseFragment fragment=FragmentFactory.createFragment(i);
+            fragment.show();
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int i) {
+
+        }
+    }
 }
