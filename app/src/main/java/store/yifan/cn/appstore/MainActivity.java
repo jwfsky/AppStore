@@ -2,6 +2,7 @@ package store.yifan.cn.appstore;
 
 
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,6 +39,11 @@ public class MainActivity extends BaseActivity {
     private ActionBarDrawerToggle toggle;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void initActionbar() {
         mActionBar = getSupportActionBar();
         mActionBar.setTitle(getString(R.string.app_name));
@@ -71,10 +77,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void init() {
         setContentView(R.layout.activity_main);
-        drawer_layout= (DrawerLayout) findViewById(R.id.drawer_layout);
-        mPager= (ViewPager) findViewById(R.id.pager);
-        mTabs= (PagerTab) findViewById(R.id.tabs);
-
+        ViewUtils.inject(this);
         drawer_layout.setDrawerListener(new DemoDrawerListener());
         drawer_layout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
 
@@ -123,7 +126,12 @@ public class MainActivity extends BaseActivity {
         private String[] mTabTitle;
         public MainPageAdapter(FragmentManager fm) {
             super(fm);
-            mTabTitle=UIUtils.getStringArray(R.array.detail_tab_names);
+            mTabTitle=UIUtils.getStringArray(R.array.tab_names);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTabTitle[position];
         }
 
         @Override
@@ -140,7 +148,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageScrolled(int i, float v, int i2) {
-
+            UIUtils.showToastSafe("哈哈，我在移动哦");
         }
 
         @Override
