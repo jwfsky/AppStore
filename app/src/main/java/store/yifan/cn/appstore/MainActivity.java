@@ -13,6 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationUtils;
 
 
 import com.lidroid.xutils.ViewUtils;
@@ -20,6 +22,9 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import store.yifan.cn.appstore.fragment.BaseFragment;
 import store.yifan.cn.appstore.fragment.FragmentFactory;
+import store.yifan.cn.appstore.ui.anim.DepthPageTransformer;
+import store.yifan.cn.appstore.ui.anim.RotateDownPageTransformer;
+import store.yifan.cn.appstore.ui.anim.ZoomOutPageTransformer;
 import store.yifan.cn.appstore.ui.widget.PagerTab;
 import store.yifan.cn.appstore.utils.UIUtils;
 
@@ -83,6 +88,7 @@ public class MainActivity extends BaseActivity {
 
         mainPageAdapter=new MainPageAdapter(getSupportFragmentManager());
         mPager.setAdapter(mainPageAdapter);
+//        mPager.setPageTransformer(false,new ZoomOutPageTransformer());
 
         mTabs.setViewPager(mPager);
         mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -148,7 +154,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageScrolled(int i, float v, int i2) {
-            UIUtils.showToastSafe("哈哈，我在移动哦");
+
         }
 
         @Override

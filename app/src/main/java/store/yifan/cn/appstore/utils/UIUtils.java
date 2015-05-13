@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+
 import store.yifan.cn.appstore.BaseActivity;
 import store.yifan.cn.appstore.application.BaseApplication;
 
@@ -149,6 +151,23 @@ public class UIUtils {
 			Toast.makeText(frontActivity, str, Toast.LENGTH_LONG).show();
 		}
 	}
+
+    /** 获取状态栏的高度 */
+    public static int getStatusBarHeight(){
+        Object obj;
+        Field field;
+        int value=0;
+        try{
+            Class clazz=Class.forName("com.android.internal.R$dimen");
+            obj=clazz.newInstance();
+            field=clazz.getField("status_bar_height");
+            value=Integer.parseInt(field.get(obj).toString());
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return getResources().getDimensionPixelSize(value);
+    }
 }
 
 
