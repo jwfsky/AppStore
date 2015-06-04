@@ -21,8 +21,9 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected View createSuccessView() {
-        TextView view=new TextView(UIUtils.getContext());
+        TextView view = new TextView(UIUtils.getContext());
         view.setText("测试");
+        View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE, View.MeasureSpec.AT_MOST);
         return view;
     }
 }

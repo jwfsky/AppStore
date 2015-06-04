@@ -17,6 +17,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationUtils;
 
 
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
