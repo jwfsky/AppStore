@@ -154,6 +154,7 @@ public class ImageLoader {
             if (drawable != null) {//放到内存缓存队列中
                 addDrawableToMemory(url, drawable);
             }
+
         } catch (OutOfMemoryError e) {
             mKeyCache.clear();
             mDrawableCache.clear();
