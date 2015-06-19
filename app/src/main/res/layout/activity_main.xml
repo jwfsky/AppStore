@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:background="#fffbfafd">
 
-        <store.yifan.cn.appstore.ui.widget.PagerTab
+        <store.yifan.cn.basework.ui.widget.PagerTab
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="42dip"

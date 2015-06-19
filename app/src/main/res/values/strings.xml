@@ -33,51 +33,8 @@
     <string name="tv_exit">退出</string>
     <string name="tv_user_name">未知</string>
     <string name="tv_user_email">unknown@gmail.com</string>
-    <string-array name="tab_names">
-        <item>首页</item>
-        <item>应用</item>
-        <item>游戏</item>
-        <item>专题</item>
-        <item>推荐</item>
-        <item>分类</item>
-        <item>排行</item>
-    </string-array>
-    <string-array name="detail_tab_names">
-        <item>详情</item>
-        <item>评论</item>
-    </string-array>
-    <string-array name="category_game">
-        <item>休闲</item>
-        <item>棋牌</item>
-        <item>益智</item>
-        <item>射击</item>
-        <item>体育</item>
-        <item>儿童</item>
-        <item>网游</item>
-        <item>角色</item>
-        <item>策略</item>
-        <item>经营</item>
-        <item>竞速</item>
-    </string-array>
-    <string-array name="category_app">
-        <item>浏览器</item>
-        <item>输入法</item>
-        <item>健康</item>
-        <item>效率</item>
-        <item>教育</item>
-        <item>理财</item>
-        <item>阅读</item>
-        <item>个性化</item>
-        <item>购物</item>
-        <item>资讯</item>
-        <item>生活</item>
-        <item>工具</item>
-        <item>出行</item>
-        <item>通讯</item>
-        <item>拍照</item>
-        <item>社交</item>
-        <item>影音</item>
-        <item>安全</item>
-    </string-array>
+
+
+
 
 </resources>

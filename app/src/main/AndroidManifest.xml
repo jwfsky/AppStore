@@ -9,9 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat"
-        android:name=".application.BaseApplication">
+        android:name="store.yifan.cn.basework.application.BaseApplication">
         <activity
-            android:name=".MainActivity"
+            android:name="store.yifan.cn.basework.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
