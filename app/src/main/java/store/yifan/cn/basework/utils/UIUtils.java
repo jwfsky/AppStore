@@ -13,7 +13,8 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 
 import store.yifan.cn.basework.BaseActivity;
-import store.yifan.cn.basework.application.BaseApplication;
+import store.yifan.cn.basework.manager.BaseApplication;
+import store.yifan.cn.basework.manager.Constants;
 
 public class UIUtils {
 
@@ -166,6 +167,29 @@ public class UIUtils {
             e.printStackTrace();
         }
         return getResources().getDimensionPixelSize(value);
+    }
+    /** 获取菜单栏的高度 */
+    public static int getMenuBarHeight(Context context){
+        Resources res=context.getResources();
+        int rid=res.getIdentifier("config_showNavigationBar","bool","android");
+        if(res.getBoolean(rid)){
+            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+            if(resourceId>0){
+               return res.getDimensionPixelSize(resourceId);
+            }
+        }
+        return 0;
+    }
+    //只 提示 语音---
+    public static void onlyShowSpeech(String message){
+
+        Constants.speechUtil.startSpeech(message);
+    }
+
+    //提示 文字+语音 ---
+    public static void showToastAndSpeech(String message){
+        onlyShowSpeech(message);
+        showToastSafe(message);
     }
 }
 

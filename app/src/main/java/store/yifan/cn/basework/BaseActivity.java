@@ -3,6 +3,8 @@ package store.yifan.cn.basework;
 import android.os.*;
 import android.support.v7.app.ActionBarActivity;
 
+import com.lidroid.xutils.ViewUtils;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getForegroundActivity = this;
         init();//初始化view
         initData();
         initActionbar();
@@ -30,7 +32,7 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getForegroundActivity = this;
+
         if (!activities.contains(getForegroundActivity)) {
             activities.add(getForegroundActivity);
         }

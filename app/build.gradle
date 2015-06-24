@@ -18,11 +18,17 @@ android {
         }
     }
 }
-
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':appcompat_v7')
     compile files('libs/xUtils-2.6.14.jar')
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile files('libs/gson-2.2.4.jar')
+    compile(name: 'AutoScalingLayout1.2', ext: 'aar')
+    compile files('libs/Msc.jar')
 }

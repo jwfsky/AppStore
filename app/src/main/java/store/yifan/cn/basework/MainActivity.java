@@ -11,8 +11,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.lidroid.xutils.ViewUtils;
@@ -22,6 +24,7 @@ import store.yifan.cn.appstore.R;
 import store.yifan.cn.basework.ui.fragment.BaseFragment;
 import store.yifan.cn.basework.ui.fragment.FragmentFactory;
 import store.yifan.cn.basework.ui.widget.PagerTab;
+import store.yifan.cn.basework.utils.UIUtils;
 
 
 public class MainActivity extends BaseActivity {
@@ -75,18 +78,29 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void init() {
+    public void init()  {
         setContentView(R.layout.activity_main);
         ViewUtils.inject(this);
         drawer_layout.setDrawerListener(new DemoDrawerListener());
         drawer_layout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
 
         mainPageAdapter=new MainPageAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mainPageAdapter);
+        DisplayMetrics dm=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        UIUtils.showToastSafe("hahh");
+       // Toast.makeText(MainActivity.this, dm.toString(), Toast.LENGTH_LONG).show();
+        try {
+            Thread.sleep(1200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        UIUtils.showToastAndSpeech("哈哈，这只是一个测试");
+       // Toast.makeText(MainActivity.this, UIUtils.getStatusBarHeight()+"--"+UIUtils.getMenuBarHeight(MainActivity.this), Toast.LENGTH_LONG).show();
+        // mPager.setAdapter(mainPageAdapter);
 //        mPager.setPageTransformer(false,new ZoomOutPageTransformer());
 
-        mTabs.setViewPager(mPager);
-        mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
+       // mTabs.setViewPager(mPager);
+       // mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
 
     }
 
