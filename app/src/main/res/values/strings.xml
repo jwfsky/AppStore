@@ -33,8 +33,13 @@
     <string name="tv_exit">退出</string>
     <string name="tv_user_name">未知</string>
     <string name="tv_user_email">unknown@gmail.com</string>
-
-
-
+    <!--zxing-->
+    <string name="viewfinderview_status_text1">将二维码/条码放入取景框内</string>
+    <string name="viewfinderview_status_text2">即可自动扫描</string>
+    <string name="msg_camera_framework_bug">对不起，系统照相设备出现问题，请重新手机尝试</string>
+    <string name="button_ok">OK</string>
+    <string name="preferences_front_light_auto">Automatic</string>
+    <string name="preferences_front_light_off">Off</string>
+    <string name="preferences_front_light_on">On</string>
 
 </resources>

@@ -8,6 +8,8 @@ import com.lidroid.xutils.ViewUtils;
 import java.util.LinkedList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 /**
  * Author: Jwf(feijia101@gmail.com) <br\>
  * Date: 2015-04-14 14:38<br\>

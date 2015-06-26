@@ -1,6 +1,7 @@
 package store.yifan.cn.basework;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -11,16 +12,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import store.yifan.cn.appstore.R;
+import store.yifan.cn.basework.opensource.zxing.android.CaptureActivity;
 import store.yifan.cn.basework.ui.fragment.BaseFragment;
 import store.yifan.cn.basework.ui.fragment.FragmentFactory;
 import store.yifan.cn.basework.ui.widget.PagerTab;
@@ -30,6 +33,10 @@ import store.yifan.cn.basework.utils.UIUtils;
 public class MainActivity extends BaseActivity {
 
 
+    @InjectView(R.id.tv)
+    TextView mTextView;
+    @InjectView(R.id.btn)
+    Button mButton;
     @ViewInject(R.id.drawer_layout)
     private DrawerLayout drawer_layout;
     @ViewInject(R.id.tabs)
@@ -40,7 +47,9 @@ public class MainActivity extends BaseActivity {
 
     private ActionBar mActionBar;
     private ActionBarDrawerToggle toggle;
-
+    private static final int REQUEST_CODE=0;
+    private static final String DECODED_CONTENT_KEY = "codedContent";
+    private static final String DECODED_BITMAP_KEY = "codedBitmap";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +62,8 @@ public class MainActivity extends BaseActivity {
         mActionBar.setDisplayHomeAsUpEnabled(true);
         mActionBar.setHomeButtonEnabled(true);
 
-        toggle = new ActionBarDrawerToggle(this, drawer_layout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
-        toggle.syncState();
+       // toggle = new ActionBarDrawerToggle(this, drawer_layout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
+      //  toggle.syncState();
 
     }
 
@@ -67,8 +76,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         return toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
@@ -78,30 +85,35 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void init()  {
-        setContentView(R.layout.activity_main);
-        ViewUtils.inject(this);
-        drawer_layout.setDrawerListener(new DemoDrawerListener());
-        drawer_layout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
-
-        mainPageAdapter=new MainPageAdapter(getSupportFragmentManager());
-        DisplayMetrics dm=new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        UIUtils.showToastSafe("hahh");
-       // Toast.makeText(MainActivity.this, dm.toString(), Toast.LENGTH_LONG).show();
-        try {
-            Thread.sleep(1200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        UIUtils.showToastAndSpeech("哈哈，这只是一个测试");
-       // Toast.makeText(MainActivity.this, UIUtils.getStatusBarHeight()+"--"+UIUtils.getMenuBarHeight(MainActivity.this), Toast.LENGTH_LONG).show();
+    public void init() {
+        setContentView(R.layout.activity_test);
+        ButterKnife.inject(this);
+       // drawer_layout.setDrawerListener(new DemoDrawerListener());
+       // drawer_layout.setDrawerShadow(R.drawable.ic_drawer_shadow, GravityCompat.START);
+      //  mainPageAdapter = new MainPageAdapter(getSupportFragmentManager());
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this, CaptureActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+            }
+        });
         // mPager.setAdapter(mainPageAdapter);
 //        mPager.setPageTransformer(false,new ZoomOutPageTransformer());
 
-       // mTabs.setViewPager(mPager);
-       // mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
+        // mTabs.setViewPager(mPager);
+        // mTabs.setOnPageChangeListener(new MyOnPageChangeListener());
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REQUEST_CODE&&resultCode==RESULT_OK){
+            if(data!=null){
+                UIUtils.showToastSafe(data.getStringExtra(DECODED_CONTENT_KEY));
+            }
+
+        }
     }
 
     /**
@@ -136,12 +148,13 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    class MainPageAdapter extends FragmentPagerAdapter{
+    class MainPageAdapter extends FragmentPagerAdapter {
 
         private String[] mTabTitle;
+
         public MainPageAdapter(FragmentManager fm) {
             super(fm);
-          //  mTabTitle=UIUtils.getStringArray(R.array.tab_names);
+            //  mTabTitle=UIUtils.getStringArray(R.array.tab_names);
         }
 
         @Override
@@ -159,6 +172,7 @@ public class MainActivity extends BaseActivity {
             return mTabTitle.length;
         }
     }
+
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
@@ -168,7 +182,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onPageSelected(int i) {
-            BaseFragment fragment=FragmentFactory.createFragment(i);
+            BaseFragment fragment = FragmentFactory.createFragment(i);
             fragment.show();
 
         }

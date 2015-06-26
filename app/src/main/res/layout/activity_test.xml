@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.dreamheart.autoscalinglayout.ASLinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    custom:designWidth="384dp"
+    custom:designHeight="567dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我只是一个测试！！"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="我是一个按钮"
+        android:id="@+id/btn"/>
+    </me.dreamheart.autoscalinglayout.ASLinearLayout>

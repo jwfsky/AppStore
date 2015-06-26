@@ -53,4 +53,7 @@
     <dimen name="app_detail_screen_width">90dp</dimen>
     <dimen name="app_detail_padding">5dp</dimen>
     <dimen name="app_detail_screen_padding">5dp</dimen>
+    <!--xzing-->
+    <dimen name="standard_padding">8dip</dimen>
+    <dimen name="half_padding">4dip</dimen>
 </resources>
